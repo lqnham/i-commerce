@@ -53,7 +53,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Page<Product> search(String search, String columnToSort) {
-
+        //Possible to enhance sortASC || sort DESC
         Pageable paging =  PageRequest.of(0, 10, Sort.by(Sort.Direction.DESC, columnToSort));
         Specification<ProductEntity> spec = processParam(search);
         ModelMapper mapper = new ModelMapper();
