@@ -87,3 +87,7 @@ jdbc:h2:file:./**[iproduct]**/src/main/resources/db/**[iproduct]**
 and change to the db which one you want to see and list at **installing** item.
 
 ### Sample run
+```
+http://localhost/search?search=price>2004&sortBy=name
+http://localhost/findAll
+```
