@@ -27,7 +27,8 @@ What things you need to install the software and how to install them
 
 ## Design system.
 
-Image eeeeeeee
+![System Design](https://github.com/lqnham/i-commerce/blob/master/Untitled%20Diagram.jpg)
+
 
 ### Folder Structure
 
