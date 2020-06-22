@@ -37,7 +37,6 @@ public class ProductSpecificationBuilder {
         return this;
     }
 
-
     public Specification<ProductEntity> build() {
         if (params.size() == 0)
             return null;

@@ -7,6 +7,7 @@ import com.icommerce.iproduct.service.InterCommunicationService;
 import com.icommerce.iproduct.service.ProductService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.*;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -30,12 +31,6 @@ public class ProductController {
         this.productService = productService;
     }
 
-    /*@GetMapping("/{id}/audits")
-    public Object getOrdersForCustomer(@PathVariable long id) {
-        log.info("getOrdersForCustomer: "+ id);
-        return auditClient.getAuditForProduct(id);
-    }*/
-
     @RequestMapping(method = RequestMethod.GET, value = "/findAll")
     @ResponseBody
     public List<Product> findAll() {
@@ -46,10 +41,10 @@ public class ProductController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/search")
     @ResponseBody
-    public List<Product> search(@RequestParam(value = "search") String search) {
-        log.info("Search: " + search);
+    public Page<Product> search(@RequestParam(value = "search") String search, @RequestParam(value = "sortBy") String sortBy) {
+        log.info("Search: " + search + "SortBy: "  + sortBy);
         communicationService.triggerAudit("search", search);
-        return productService.search(search);
+        return productService.search(search, sortBy);
     }
 
     @GetMapping("/{id}")

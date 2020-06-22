@@ -12,6 +12,10 @@ import com.icommerce.iproduct.service.ProductService;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -48,23 +52,14 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> search(String search) {
-
-        ProductSpecificationBuilder builder = new ProductSpecificationBuilder();
-        Pattern pattern = Pattern.compile("(\\w+?)(:|<|>)(\\w+?),");
-        Matcher matcher = pattern.matcher(search + ",");
-        while (matcher.find()) {
-            builder.with(matcher.group(1), matcher.group(2), matcher.group(3));
-        }
-        Specification<ProductEntity> spec = builder.build();
+    public Page<Product> search(String search, String columnToSort) {
+        //Possible to enhance sortASC || sort DESC
+        Pageable paging =  PageRequest.of(0, 10, Sort.by(Sort.Direction.DESC, columnToSort));
+        Specification<ProductEntity> spec = processParam(search);
         ModelMapper mapper = new ModelMapper();
-        List<Product> list = new ArrayList<>();
-        List<ProductEntity> entities = productDAO.findAll(spec);
-        mapper.map(productDAO.findAll(spec), list);
-        entities.stream().forEach(entity -> {
-            list.add(mapper.map(entity, Product.class));
-        });
-        return list;
+
+        return productDAO.findAll(spec, paging)
+                .map(entity -> mapper.map(entity, Product.class));
     }
 
     @Override
@@ -90,6 +85,11 @@ public class ProductServiceImpl implements ProductService {
         return mapper.map(productDAO.save(entity), Product.class);
     }
 
+    /**
+     * Store the price change
+     * @param id
+     * @param request
+     */
     private void handleTrackingChange(Long id, ProductRequest request) {
         ModelMapper mapper = new ModelMapper();
         ProductPriceTrackingEntity trackingEntity = new ProductPriceTrackingEntity();
@@ -105,5 +105,20 @@ public class ProductServiceImpl implements ProductService {
         ProductEntity entity = productDAO.findById(id).orElseThrow(() -> new ProductNotFoundException(id));
         entity.setDelete(true);
         productDAO.save(entity);
+    }
+
+    /**
+     * Given param and process then convert to Specification
+     * @param search
+     * @return
+     */
+    private Specification<ProductEntity> processParam(String search) {
+        ProductSpecificationBuilder builder = new ProductSpecificationBuilder();
+        Pattern pattern = Pattern.compile("(\\w+?)(:|<|>)(\\w+?),");
+        Matcher matcher = pattern.matcher(search + ",");
+        while (matcher.find()) {
+            builder.with(matcher.group(1), matcher.group(2), matcher.group(3));
+        }
+        return builder.build();
     }
 }

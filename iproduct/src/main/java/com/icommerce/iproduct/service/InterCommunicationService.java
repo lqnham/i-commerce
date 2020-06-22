@@ -22,6 +22,7 @@ public class InterCommunicationService {
         return INSTANCE;
     }
 
+    //Possible to enhance return ResponseEntity.getStatusCode() to handle case exception
     public void triggerAudit(String action, String content) {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders httpHeaders = new HttpHeaders();

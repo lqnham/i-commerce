@@ -10,8 +10,8 @@ import java.time.LocalDateTime;
 
 @Slf4j
 @SpringBootApplication
-//@EnableEurekaClient
-//@EnableFeignClients
+@EnableEurekaClient
+@EnableFeignClients
 public class IProductApplication {
     public static void main(String[] args) {
         SpringApplication.run(IProductApplication.class, args);
