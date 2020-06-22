@@ -1,6 +1,8 @@
-# Project Title
+# I-Commerce
 
-One Paragraph of project description goes here
+A small start-up named "iCommerce" wants to build a very simple online shopping
+application to sell their products. In order to get to the market quickly, they just want
+to build an MVP version with a very limited set of functionalities
 
 ## Getting Started
 
