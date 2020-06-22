@@ -1,13 +1,14 @@
 package com.icommerce.order;
 
-import org.junit.jupiter.api.Test;
+import org.junit.*;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class IOrderApplicationTests {
+public class IOrderApplicationTests {
 
     @Test
-    void contextLoads() {
+    public void contextLoads() {
+
     }
 
 }
