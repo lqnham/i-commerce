@@ -8,7 +8,7 @@ to build an MVP version with a very limited set of functionalities
 These instructions just apply for my project to do some excercise and practice about java with spring.
 It's will continues to enhance and was wrapped with a bunch of feature in the furture
 
-### Prerequisites
+## Prerequisites
 
 What things you need to install the software and how to install them
 
@@ -29,8 +29,13 @@ What things you need to install the software and how to install them
 
 ![System Design](https://github.com/lqnham/i-commerce/blob/master/Untitled%20Diagram.jpg)
 
+## Entity
+![Product Entity](https://github.com/lqnham/i-commerce/blob/master/ProducEntity.png)
+![Order Entity](https://github.com/lqnham/i-commerce/blob/master/OrderEntity.png)
+![Audit Entity](https://github.com/lqnham/i-commerce/blob/master/AuditEntity.png)
 
-### Folder Structure
+
+## Folder Structure
 
 Explain what these tests test and why
 
