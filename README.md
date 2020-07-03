@@ -1,89 +1,98 @@
 # I-Commerce
-
 A small start-up named "iCommerce" wants to build a very simple online shopping
 application to sell their products. In order to get to the market quickly, they just want
 to build an MVP version with a very limited set of functionalities
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+These instructions just apply for my project to do some excercise and practice about java with spring.
+It's will continues to enhance and was wrapped with a bunch of feature in the furture
 
-### Prerequisites
+## Prerequisites
 
 What things you need to install the software and how to install them
 
 ```
-Give examples
+1. Maven   
+2. JDK 11
+3. Intellij
+4. Spring boot 2.3.1.RELEASE
+5. Spring Cloud Hoxton.SR5
+6. H2 Database
+7. Lombok
+8. Eureka Server and Client
+9. Zuul
+10. Using postman if that is your favorite tool
 ```
 
-### Installing
+## Design system.
 
-A step by step series of examples that tell you how to get a development env running
+![System Design](https://github.com/lqnham/i-commerce/blob/master/Untitled%20Diagram.jpg)
 
-Say what the step will be
+## Entity
+![Product Entity](https://github.com/lqnham/i-commerce/blob/master/ProducEntity.png)
+![Order Entity](https://github.com/lqnham/i-commerce/blob/master/OrderEntity.png)
+![Audit Entity](https://github.com/lqnham/i-commerce/blob/master/AuditEntity.png)
 
-```
-Give the example
-```
 
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
-
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
+## Folder Structure
 
 Explain what these tests test and why
 
 ```
-Give an example
+root
+|---idiscovery
+|---|---IdiscoveryApplication
+|---igateway
+|---|---IgatewayApplication
+
+these service same structure:
+|---iproduct
+|---iorder
+|---iaudit
+|---iaccount
+|---|---|---configuration : initialize data needed
+|---|---|---controllder : provide restful API
+|---|---|---dao : communication with DB
+|---|---|---entity : entities mapping with table DB
+|---|---|---model : store draw data to let system communication
+|---|---|---service : provide method service to handle some logics
+|---|---|---|---impl : implement the method from service
+|--- README : Introduce about the project and guideline
 ```
 
-### And coding style tests
-
-Explain what these tests test and why
+### Installing 
+A step by step series that tell you how to get a development env running
 
 ```
-Give an example
+There module defind as the list:
+[x] idiscovery : 8000 -> Building eureka server
+[x] igateway  :80 -> Do as gateway
+[x] iproduct : 8001 -> Main Service to do something with Product: Search, Filter, provide to our customer what we sell...
+[ ] iorder : 8002 -> Give the the way to our customer can buy which product they like.
+[x] iaudit : 8004 -> Service to store some action from customer to support audit
+[ ] iaccount : 8005 -> Which this service as a customer i can login by easy way as click on login with facebook or google, and let customer can see they shopping card.
 ```
 
-## Deployment
+```
+To run the application we need to run [idiscovery] -> [igateway] ->  [the services was list above]
+```
 
-Add additional notes about how to deploy this on a live system
+### How to ..?
+###### Watching database
+```
+1. Go to the port with service was provide and access
+```
+![Connect DB](https://github.com/lqnham/i-commerce/blob/master/connectDB.png)
+1. username: sa
+2. password: password
+3. JDBC URL: depend on the module which you want to see
+e.g &#8594; you want to see DB of **iproduct** module 
+jdbc:h2:file:./**[iproduct]**/src/main/resources/db/**[iproduct]**
+and change to the db which one you want to see and list at **installing** item.
 
-## Built With
-
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
-
-## Authors
-
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+### Sample run
+```
+http://localhost/search?search=price>2004&sortBy=name
+http://localhost/findAll
+```
