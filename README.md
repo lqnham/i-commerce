@@ -27,12 +27,12 @@ What things you need to install the software and how to install them
 
 ## Design system.
 
-![System Design](https://github.com/lqnham/i-commerce/blob/master/Untitled%20Diagram.jpg)
+![System Design](https://github.com/lqnham/i-commerce/blob/master/resources/Untitled%20Diagram.jpg)
 
 ## Entity
-![Product Entity](https://github.com/lqnham/i-commerce/blob/master/ProducEntity.png)
-![Order Entity](https://github.com/lqnham/i-commerce/blob/master/OrderEntity.png)
-![Audit Entity](https://github.com/lqnham/i-commerce/blob/master/AuditEntity.png)
+![Product Entity](https://github.com/lqnham/i-commerce/blob/master/resources/ProducEntity.png)
+![Order Entity](https://github.com/lqnham/i-commerce/blob/master/resources/OrderEntity.png)
+![Audit Entity](https://github.com/lqnham/i-commerce/blob/master/resources/AuditEntity.png)
 
 
 ## Folder Structure
