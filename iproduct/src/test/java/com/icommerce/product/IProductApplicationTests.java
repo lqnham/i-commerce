@@ -28,6 +28,7 @@ class IProductApplicationTests {
     @Test
     public void abc_sr_ee() {
 
-        String params = "search?search=price<2000";
+        String $ = "search?search=price<2000";
+        System.out.println($);
     }
 }

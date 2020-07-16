@@ -81,21 +81,20 @@ public class ProductServiceImpl implements ProductService {
         ModelMapper mapper = new ModelMapper();
         ProductEntity entity = mapper.map(request, ProductEntity.class);
         entity.setProductId(id);
-        handleTrackingChange(id, request);
+        handleTrackingChange(id, request.getPrice());
         return mapper.map(productDAO.save(entity), Product.class);
     }
 
     /**
      * Store the price change
      * @param id
-     * @param request
+     * @param price
      */
-    private void handleTrackingChange(Long id, ProductRequest request) {
+    private void handleTrackingChange(Long id, Double price) {
         ModelMapper mapper = new ModelMapper();
         ProductPriceTrackingEntity trackingEntity = new ProductPriceTrackingEntity();
-        trackingEntity.setId(0L);
         trackingEntity.setProductId(id);
-        trackingEntity.setPrice(request.getPrice());
+        trackingEntity.setPrice(price);
         trackingEntity.setEffectiveDate(new Date());
         priceTrackingDao.save(trackingEntity);
     }

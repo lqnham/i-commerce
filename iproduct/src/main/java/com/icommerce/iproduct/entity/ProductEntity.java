@@ -11,7 +11,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Setter
 @Entity
 @Table(name = "product")
-public class ProductEntity {
+public class ProductEntity{
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
@@ -25,13 +25,16 @@ public class ProductEntity {
     private Double price;
 
     @Column(name = "branch")
-    private String branch;
+    private String branchName;
 
     @Column(name = "color")
     private String color;
 
     @Column(name = "quantity")
     private int quantity;
+
+    @Column(name = "description")
+    private String description;
 
     @Column(name = "delete", columnDefinition = "boolean default false")
     private boolean delete;

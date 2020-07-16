@@ -25,7 +25,7 @@ public class DataInitialize implements ApplicationRunner {
                 product.setName("Macbook 16 inc" + i);
                 product.setColor("Grey" + i);
                 product.setPrice(Double.valueOf(2000) + i);
-                product.setBranch("VN" + i);
+                product.setBranchName("VN" + i);
                 product.setColor("Yellow" + i);
                 product.setQuantity(i);
                 product.setDelete(false);

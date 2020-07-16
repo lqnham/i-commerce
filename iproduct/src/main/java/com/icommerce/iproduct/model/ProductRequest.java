@@ -16,12 +16,11 @@ public class ProductRequest {
     @NotNull
     private Double price;
 
-    @NotBlank
     private String branchName;
 
     private String color;
 
     private int quantity;
 
-    private boolean delete = false;
+    private boolean delete;
 }

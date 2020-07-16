@@ -16,5 +16,7 @@ public class IProductApplication {
     public static void main(String[] args) {
         SpringApplication.run(IProductApplication.class, args);
         log.info("Server started at: " + LocalDateTime.now());
+        String _2 ="ssss";
+        System.out.println(_2);
     }
 }

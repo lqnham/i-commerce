@@ -31,16 +31,14 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/findAll")
-    @ResponseBody
+    @GetMapping
     public List<Product> findAll() {
         log.info("findAll");
         communicationService.triggerAudit("findAll", "findAll");
         return productService.findAll();
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/search")
-    @ResponseBody
+    @GetMapping("/search")
     public Page<Product> search(@RequestParam(value = "search") String search, @RequestParam(value = "sortBy") String sortBy) {
         log.info("Search: " + search + "SortBy: "  + sortBy);
         communicationService.triggerAudit("search", search);
@@ -69,7 +67,6 @@ public class ProductController {
     }
 
     @DeleteMapping("/{id}")
-    @ResponseStatus(code = HttpStatus.ACCEPTED)
     public void delete(@PathVariable Long id) {
         log.info("delete for: " + id);
         productService.delete(id);
