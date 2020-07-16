@@ -78,12 +78,12 @@ There module defind as the list:
 To run the application we need to run [idiscovery] -> [igateway] ->  [the services was list above]
 ```
 
-### How to ..?
+### How to ...?
 ###### Watching database
 ```
 1. Go to the port with service was provide and access
 ```
-![Connect DB](https://github.com/lqnham/i-commerce/blob/master/connectDB.png)
+![Connect DB](https://github.com/lqnham/i-commerce/blob/master/resources/connectDB.png)
 1. username: sa
 2. password: password
 3. JDBC URL: depend on the module which you want to see
